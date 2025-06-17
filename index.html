@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baltacı GSM Teknik Servis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+    header {
+      background-color: #0074D9;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .logo {
+      height: 50px;
+    }
+    .technician {
+      width: 10cm;
+      height: auto;
+      border-radius: 10px;
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      margin-top: 10px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .modal {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background: #e6f2ff;
+      padding: 20px;
+      max-width: 800px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 10;
+      border-radius: 10px;
+    }
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 5;
+    }
+    .modal h2 {
+      margin-top: 0;
+    }
+    .services {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-item img {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a onclick="openModal('aboutModal')">Hakkımızda</a>
+      <a onclick="openModal('servicesModal')">Hizmetlerimiz</a>
+      <a onclick="openModal('contactModal')">İletişim</a>
+    </nav>
+    <img src="https://i.ibb.co/5XStjNKg/s-leyman-BALTACI.jpg" alt="Süleyman Baltacı" class="technician" />
+  </header>
+
+  <div class="overlay" id="overlay" onclick="closeModal()"></div>
+
+  <div class="modal" id="aboutModal">
+    <h2>Hakkımızda</h2>
+    <p>18 yıllık deneyime sahip Baltacı GSM, cep telefonu tamirinde uzmanlaşmış güvenilir bir teknik servistir. Kaliteli hizmet ve müşteri memnuniyeti odaklı çalışırız.</p>
+  </div>
+
+  <div class="modal" id="servicesModal">
+    <h2>Hizmetlerimiz</h2>
+    <div class="services">
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" /> Ekran Değişimi</div>
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/battery.png" /> Batarya Değişimi</div>
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/motherboard.png" /> Anakart Onarımı</div>
+      <div class="service-item"><img src="https://img.icons8.com/color/48/000000/water.png" /> Sıvı Teması Tamiri</div>
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/usb-c-port.png" /> Şarj Soketi Değişimi</div>
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/camera.png" /> Kamera Tamiri</div>
+      <div class="service-item"><img src="https://img.icons8.com/ios-filled/50/000000/speaker.png" /> Hoparlör Değişimi</div>
+    </div>
+  </div>
+
+  <div class="modal" id="contactModal">
+    <h2>İletişim</h2>
+    <p><strong>Telefon:</strong> 0535 705 6127</p>
+    <p><strong>Adres:</strong> Nuri Paşa Mah. 14. Sok. No:19, Zeytinburnu / İstanbul</p>
+    <p><strong>E-posta:</strong> suleymancomtr61@gmail.com</p>
+    <p><strong>Çalışma Saatleri:</strong> Her gün 09:00 - 22:00</p>
+    <p><strong>Instagram:</strong> @baltacigsm</p>
+    <p><strong>WhatsApp:</strong> 0535 705 6127</p>
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById(id).style.display = 'block';
+    }
+    function closeModal() {
+      document.getElementById('overlay').style.display = 'none';
+      document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
+    }
+  </script>
+</body>
+</html>
