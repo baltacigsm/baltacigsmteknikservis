@@ -2,13 +2,17 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Baltacı GSM Teknik Servis</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow-y: hidden; /* dikey kaydırmayı kaldır */
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
+      color: #222;
     }
     header {
       background-color: #0074D9;
@@ -18,18 +22,8 @@
       justify-content: space-between;
       align-items: center;
       position: relative;
-    }
-    .logo {
-      height: 50px;
-    }
-    .technician {
-      width: 10cm;
-      height: auto;
-      border-radius: 10px;
-      position: absolute;
-      top: 100%;
-      right: 20px;
-      margin-top: 10px;
+      height: 70px;
+      box-sizing: border-box;
     }
     nav {
       display: flex;
@@ -40,20 +34,31 @@
       text-decoration: none;
       cursor: pointer;
       font-weight: bold;
+      user-select: none;
+    }
+    .technician {
+      width: 10cm;
+      height: auto;
+      border-radius: 10px;
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      margin-top: 10px;
     }
     .modal {
       display: none;
       position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      margin: auto;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
       background: #e6f2ff;
       padding: 20px;
       max-width: 800px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       z-index: 10;
       border-radius: 10px;
+      color: #222;
+      box-sizing: border-box;
     }
     .overlay {
       display: none;
@@ -67,6 +72,7 @@
     }
     .modal h2 {
       margin-top: 0;
+      color: #0d6efd;
     }
     .services {
       display: flex;
@@ -81,6 +87,115 @@
     .service-item img {
       width: 24px;
       height: 24px;
+    }
+
+    /* Fiyat Listesi */
+    section#priceList {
+      max-width: 850px;
+      width: 850px;
+      margin: 5px 0 0 20px;
+      background-color: #fff;
+      padding: 12px 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgb(13 110 253 / 0.3);
+      text-align: left;
+      box-sizing: border-box;
+      overflow: visible;
+    }
+    section#priceList h2 {
+      color: #0d6efd;
+      margin-bottom: 6px;
+      font-size: 1.5rem;
+    }
+    section#priceList p.intro {
+      font-style: italic;
+      font-size: 13px;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    section#priceList table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      color: #222;
+    }
+    section#priceList thead {
+      background-color: #0d6efd;
+      color: white;
+    }
+    section#priceList th, section#priceList td {
+      padding: 5px 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    section#priceList tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    section#priceList tbody td.model {
+      color: #B22222;
+      font-weight: 600;
+      width: 45%;
+    }
+    section#priceList tbody td.quality {
+      color: #228B22;
+      font-weight: 600;
+      width: 20%;
+    }
+    section#priceList tbody td.price {
+      color: #0d6efd;
+      font-weight: 700;
+      width: 35%;
+    }
+    section#priceList p.note {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #8B008B;
+      line-height: 1.2;
+    }
+    section#priceList p.note a {
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 900px) {
+      section#priceList {
+        width: 95vw;
+        margin-left: 10px;
+      }
+    }
+    @media (max-width: 640px) {
+      section#priceList table, section#priceList thead, section#priceList tbody, section#priceList th, section#priceList td, section#priceList tr {
+        display: block;
+      }
+      section#priceList thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      section#priceList tr {
+        margin-bottom: 10px;
+      }
+      section#priceList td {
+        border: none;
+        position: relative;
+        padding-left: 45%;
+        text-align: left;
+        font-size: 12px;
+      }
+      section#priceList td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 40%;
+        white-space: nowrap;
+        font-weight: 700;
+        color: #0d6efd;
+      }
+      section#priceList td.model:before { content: "Model"; }
+      section#priceList td.quality:before { content: "Kalite"; }
+      section#priceList td.price:before { content: "Fiyat"; }
     }
   </style>
 </head>
@@ -123,6 +238,43 @@
     <p><strong>Instagram:</strong> @baltacigsm</p>
     <p><strong>WhatsApp:</strong> 0535 705 6127</p>
   </div>
+
+  <section id="priceList">
+    <h2>📱 iPhone GX Kalite Ekran Fiyatları</h2>
+    <p class="intro">Tüm ekranlarımız yüksek kaliteli <strong style="color: #228B22;">GX</strong> serisidir. Montaj hizmeti servisimizde mevcuttur.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Kalite</th>
+          <th>Fiyat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="model">iPhone X</td><td class="quality">GX</td><td class="price">1.000 TL</td></tr>
+        <tr><td class="model">iPhone XS</td><td class="quality">GX</td><td class="price">1.000 TL</td></tr>
+        <tr><td class="model">iPhone 11</td><td class="quality">GX</td><td class="price">1.000 TL</td></tr>
+        <tr><td class="model">iPhone 11 Pro</td><td class="quality">GX</td><td class="price">1.000 TL</td></tr>
+        <tr><td class="model">iPhone 11 Pro Max</td><td class="quality">GX</td><td class="price">1.200 TL</td></tr>
+        <tr><td class="model">iPhone 12</td><td class="quality">GX</td><td class="price">1.300 TL</td></tr>
+        <tr><td class="model">iPhone 12 Pro</td><td class="quality">GX</td><td class="price">1.300 TL</td></tr>
+        <tr><td class="model">iPhone 12 Pro Max</td><td class="quality">GX</td><td class="price">1.500 TL</td></tr>
+        <tr><td class="model">iPhone 13</td><td class="quality">GX</td><td class="price">1.500 TL</td></tr>
+        <tr><td class="model">iPhone 13 Pro</td><td class="quality">GX</td><td class="price">2.000 TL</td></tr>
+        <tr><td class="model">iPhone 13 Pro Max</td><td class="quality">GX</td><td class="price">2.200 TL</td></tr>
+        <tr><td class="model">iPhone 14 Pro</td><td class="quality">GX</td><td class="price">2.200 TL</td></tr>
+        <tr><td class="model">iPhone 14 Pro Max</td><td class="quality">GX</td><td class="price">2.700 TL</td></tr>
+        <tr><td class="model">iPhone 15 Pro</td><td class="quality">GX</td><td class="price">2.700 TL</td></tr>
+        <tr><td class="model">iPhone 15 Pro Max</td><td class="quality">GX</td><td class="price">3.000 TL</td></tr>
+        <tr><td class="model">iPhone 16 Pro</td><td class="quality">GX</td><td class="price">4.600 TL</td></tr>
+        <tr><td class="model">iPhone 16 Pro Max</td><td class="quality">GX</td><td class="price">5.000 TL</td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      Samsung, Xiaomi, Huawei, Oppo-Realme, Vivo, Infinix, Tecno, General Mobile, Reeder, Omix, Hikink marka model ekran ve tamirleri için 
+      <strong><a href="https://wa.me/905357056127" target="_blank" rel="noopener noreferrer">WhatsApp</a></strong> numaramızdan bizimle iletişime geçebilirsiniz.
+    </p>
+  </section>
 
   <script>
     function openModal(id) {
